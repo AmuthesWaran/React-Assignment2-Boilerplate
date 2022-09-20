@@ -12,7 +12,7 @@ const Dashboard = () => {
     // console.log(articles[0]); 
     // 0cca92595de748669aab34ea7db5fd1e
     useEffect(() => {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=0cca92595de748669aab34ea7db5fd1e`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=6e39dd6c131e4efe9c956648205bd79a`)
             .then(response =>
                 setArticles(response.data.articles)
                 // console.log(response.data.articles)

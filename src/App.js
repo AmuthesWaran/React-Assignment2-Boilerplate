@@ -7,6 +7,7 @@ import Homepage from './Components/Homepage';
 import Login from './Components/Login';
 import SavedNews from './Components/SavedNews';
 import SignUp from './Components/SignUp';
+import Unauthorised from './Components/Unauthorised';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path= '/signup' element={<SignUp />} />
                 <Route path= '/savednews' element={<SavedNews />} />
                 <Route path= '/dashboard' element={<Dashboard />} />
+                <Route path= '/unauthorised' element={<Unauthorised />} />
               
         </Routes>
 

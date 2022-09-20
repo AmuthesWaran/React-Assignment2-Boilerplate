@@ -1,34 +1,50 @@
 
 import React, { useState } from 'react'
-import { Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap'
-import { login, logout } from '../features/UserSliceRoute'
+import { Button, Col, FloatingLabel, Form, Row } from 'react-bootstrap'
+import { login } from '../features/UserSliceRoute'
 import {useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom"
+
 const Login = () => {
 
-    const [isLoggedIn, SetIsLoggedIn] = useState([])
+    const [isLoggedIn, SetIsLoggedIn] = useState([false])
+    const [PagetoRender, setPagetoRender] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch = useDispatch()
 
     const usernametyped = (e) => {setUsername(e.target.value)}
     const passwordtyped = (e) => {setPassword(e.target.value)}
-
+    const navigate = useNavigate();
+    
     // console.log(usernametyped);
     // console.log(passwordtyped);
 
-    if ( username == "" || password == "" )
+    let submitted = (event) =>{
+      event.preventDefault()
+      if ( username === "" || password === "" )
           {
               console.log("awaiting");
           }
     
-    else if ( username == "admin" && password == "password" )
+    else if ( username === "admin" && password === "password" )
+
+
                 {
-                // dispatch(login(
-                //     {
-                //       true,
-                //       '/savednews'
-                //     }
-                //   ))
+                  SetIsLoggedIn(true)
+                  setPagetoRender('/savednews')
+                
+                  
+
+                dispatch(login(
+                    {
+                      isLoggedIn,
+                      PagetoRender
+                    }
+                  ))
+
+                  navigate("/dashboard")
                 }
 
     else
@@ -36,8 +52,8 @@ const Login = () => {
             console.log("failed");
           }
 
-    let submitted = (event) =>{
-      event.preventDefault()
+
+
   }
 
  return (
@@ -63,7 +79,7 @@ const Login = () => {
         <Button className='mt-2 mb-3' variant='primary' type='submit' onClick={submitted} >
             Login
         </Button>
-
+  
     </Form>
     </Col>
     </Row>
